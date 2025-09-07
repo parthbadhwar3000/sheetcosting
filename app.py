@@ -7,11 +7,16 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.callbacks import EarlyStopping
 
 with open('scaler.pkl','rb') as file:
     scaler=pickle.load(file)
 
-model=tf.keras.load_model('model.h5')
+with open('model.pkl','rb') as file:
+    model=pickle.load(file)
+
 
 st.title("SS Sheet Cost Prediction(IIT Roorkee dataset)")
 
@@ -24,7 +29,9 @@ input_data=pd.DataFrame({
 })
 
 
+
+
 if st.button('Submit'):
     input_data_scaled=scaler.transform(input_data)
     prediction=model.predict(input_data_scaled)
-    st.write(f"Predicted Cost ₹{prediction[0]:.2f}")
+    st.write(f"Predicted Price: ₹{prediction[0]:.2f}")
