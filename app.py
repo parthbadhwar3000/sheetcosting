@@ -1,14 +1,17 @@
-import streamlit as st
+import sysconfig
+lib_path = sysconfig.get_paths()["purelib"]
+import distutils as _distutils
+import streamlit as st 
 import pickle
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
+import tensorflow
 
 with open('scaler.pkl','rb') as file:
     scaler=pickle.load(file)
 
-with open('model.pkl','rb') as file:
-    model=pickle.load(file)
+model=tensorflow.keras.load_model('model.h5')
 
 st.title("SS Sheet Cost Prediction(IIT Roorkee dataset)")
 
