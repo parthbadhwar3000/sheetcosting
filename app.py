@@ -6,12 +6,12 @@ import pickle
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
-import tensorflow
+import tensorflow as tf
 
 with open('scaler.pkl','rb') as file:
     scaler=pickle.load(file)
 
-model=tensorflow.keras.load_model('model.h5')
+model=tf.keras.load_model('model.h5')
 
 st.title("SS Sheet Cost Prediction(IIT Roorkee dataset)")
 
